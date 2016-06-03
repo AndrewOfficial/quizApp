@@ -6,13 +6,16 @@
   </fieldset>
   <form>
     <h3>Change Question Quantity</h3>
-    <input type="number" ng-model="questionQuantity">
-    <button ng-click="changeQuestionQuantity()"></button>
+    <input type="number" ng-model="questionQuantity" min="1" max="8">
+    <button ng-click="changeQuestionQuantity()">Change Question Quantity</button>
   </form>
   <fieldset ng-repeat="question in quiz.questions track by $index">
-    <input type="text" ng-model="question.inQuery">
+    <input type="text" ng-model="question.inQuery" placeholder="Enter Your Question">
+    <button ng-click="addAnswer($index)">Add More Answers</button>
+    <button ng-click="removeAnswer($index)">Remove Answers</button>
     <div ng-repeat="option in quiz.questions[$index].options">
-      <input type="text" ng-model="option.answer">
+      <input type="checkbox" ng-model="option.isCorrect"> Correct Answer
+      <input type="text" ng-model="option.answer" placeholder="possible answer">
     </div>
   </fieldset>
   <button type="submit">Save Quiz!</button>

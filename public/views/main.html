@@ -9,7 +9,7 @@
     </fieldset>
     <fieldset>
       <label for="questions"> How many questions are in your quiz?</label>
-      <input type="number" id="questions" ng-model="questions" placeholder="What do you want to name your quiz?">
+      <input type="number" id="questions" ng-model="questions" min="1" max="20">
     </fieldset>
     <button type="submit">Link Start!</button>
   </form>

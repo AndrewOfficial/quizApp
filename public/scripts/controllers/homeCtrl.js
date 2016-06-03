@@ -1,7 +1,7 @@
 app.controller('homeCtrl', ['$scope', 'quizFactory', '$location', function ($scope, quizFactory, $location){
   $scope.showQuizModal = false;
   $scope.title = '';
-  $scope.questions = 0;
+  $scope.questions = 5;
   $scope.toggleQuizModal = function () {
     if ($scope.showQuizModal){
       $scope.showQuizModal = false;

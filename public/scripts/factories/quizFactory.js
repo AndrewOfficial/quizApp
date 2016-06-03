@@ -25,17 +25,29 @@ app.factory('quizFactory',[function(){
       number: i,
       inQuery: '',
       options: [
-        {
-          answer: '',
-          bool: false
-        }
       ]
-    })
+    });
+    for (var j = 0; j<4 ; j++){
+      quizFactory.addAnswer(i);
+    }
   };
 
   quizFactory.removeQuestion = function(i){
     var x = quizTemplate.questions.pop();
     quizTemplate.questionsRemoved.push(x);
+  };
+
+  quizFactory.addAnswer = function(i){
+    quizTemplate.questions[i].options.push(
+      {
+        answer: '',
+        isCorrect: false
+      }
+    );
+  };
+
+  quizFactory.removeAnswer = function(i){
+    var x = quizTemplate.questions[i].options.pop();
   };
   return quizFactory;
 }]);
