@@ -1,0 +1,16 @@
+<a href="/#/quizzes"><button>Take A Quiz</button></a>
+<button ng-click="toggleQuizModal()">Create A new Quiz</button>
+<div class="quizCreate" ng-show="showQuizModal">
+  <form id="start" ng-submit="makeQuiz()">
+    <h2>Create Your Quiz!</h2>
+    <fieldset>
+      <label for="title"> Title </label>
+      <input type="text" id="title" ng-model="title" placeholder="What do you want to name your quiz?">
+    </fieldset>
+    <fieldset>
+      <label for="questions"> How many questions are in your quiz?</label>
+      <input type="number" id="questions" ng-model="questions" placeholder="What do you want to name your quiz?">
+    </fieldset>
+    <button type="submit">Link Start!</button>
+  </form>
+</div>

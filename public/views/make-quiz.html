@@ -1,0 +1,15 @@
+<form id="start" ng-submit="saveQuiz()">
+  <h2>Create Your Quiz!</h2>
+  <fieldset>
+    <label for="title"> Title </label>
+    <input type="text" id="title" ng-model="quiz.title" placeholder="What do you want to name your quiz?">
+  </fieldset>
+  <fieldset ng-repeat="question in quiz.questions track by $index">
+    <h3 ng-model="quiz.questions[$index].question"></h3>
+    <input type="radio" ng-model="quiz.questions[$index].options.first" ng-value="" /> <br />
+    <input type="checkbox" name="animal" value="Dog" />Dogs<br />
+    <input type="checkbox" name="animal" value="Bird" />Birds<br />
+    <input type="submit" value="Submit now" />
+  </fieldset>
+  <button type="submit">Save Quiz!</button>
+</form>

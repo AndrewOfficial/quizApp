@@ -1,0 +1,17 @@
+doctype html
+html(ng-app="QuizApp")
+  head
+    title= title
+    link(rel='stylesheet' href='/lib/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='lib/moment.js')
+    script.
+      moment().format()
+    script(src='lib/angular.min.js')
+    script(src='lib/angular-route.min.js')
+    script(src = '/scripts/appConfig.js')
+    script(src='/scripts/factories/quizFactory.js')
+    script(src='/scripts/controllers/homeCtrl.js')
+    script(src='/scripts/controllers/makeQuizCtrl.js')
+  body
+    block content
