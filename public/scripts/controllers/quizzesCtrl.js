@@ -5,6 +5,7 @@ app.controller('quizzesCtrl', [ '$scope','quizFactory','$location', function ($s
   });
 
   $scope.takeQuiz = function(i){
+    quizFactory.selectQuiz(i);
     $location.path('/take-quiz')
   }
 }]);
