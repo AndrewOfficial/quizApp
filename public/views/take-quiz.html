@@ -1,8 +1,9 @@
 <h1>{{quiz.title}}</h1>
 <div class="questions" ng-repeat="question in quiz.questions">
   <h3>{{question.inQuery}}</h3>
-  <div ng-repeat="option in question.options">
-    <input type="radio" name="{{$parent.$index}}">
+  <fieldset ng-repeat="option in question.options">
+    <input type="radio" ng-model="quizPaper.answers[$parent.$index].options[$index].isCorrect" name="{{$parent.$index}}">
     <p style="display:inline">{{option.answer}}</p>
-  </div>
+  </fieldset>
 </div>
+<button ng-click="submitQuiz()">Submit</button>

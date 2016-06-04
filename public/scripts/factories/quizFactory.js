@@ -1,18 +1,17 @@
 app.factory('quizFactory',['$http',function($http){
   var quizFactory = {};
   var quizToTake;
-  var allQuizes = [];
+  var allQuizzes = [];
   var quizTemplate = {
     title:'',
-    questions: [
-    ],
-    questionsRemoved: []
+    questions: [],
+    questionsRemoved: [],
+    submissions: []
   };
 
   quizFactory.makeQuizObject = {
     set: function (title, questions){
       quizTemplate.title = title;
-      console.log(title, questions);
       for (var i = 0; i < questions; i++){
         quizFactory.addQuestion(i);
       }
@@ -53,31 +52,79 @@ app.factory('quizFactory',['$http',function($http){
   };
 
   quizFactory.saveQuiz = function(){
-    for(var i = 0; i<quizTemplate.questions.length; i++){
-      for(var j = 0; j< quizTemplate.questions[i].options.length; j++){
-        if (quizTemplate.questions[i].options[j].isCorrect != false){
-          quizTemplate.questions[i].options[j].isCorrect = true;
-        }
-      }
-    }
+    quizTemplate.questions = fixAnswerSheet(quizTemplate.questions);
 
     $http.post('/api/quiz', quizTemplate);
   };
 
-  quizFactory.getAllQuizes = function(){
+  quizFactory.getAllQuizzes = function(){
     return $http.get('/api/quiz').then(function(response){
-      allQuizes = response.data;
+      allQuizzes = response.data;
       return response.data;
     })
   };
 
   quizFactory.selectQuiz = function(i){
-    console.log(allQuizes);
-    quizToTake = allQuizes[i];
+    quizToTake = allQuizzes[i];
   };
 
   quizFactory.takeQuiz = function(){
     return quizToTake;
   };
+
+  quizFactory.newQuizPaper = function(){
+    var answers = JSON.parse(JSON.stringify(quizToTake.questions));
+    for (var i = 0 ; i < answers.length; i++){
+      for (var j = 0; j < answers[i].options.length; j++){
+        answers[i].options[j].isCorrect = false;
+      }
+    }
+    var quizPaper = {quizzer: '', answers: answers, score: 0};
+    return quizPaper;
+  };
+
+  quizFactory.submitQuiz = function (quizPaper){
+    var quizPaperCopy = fixAnswerSheet(JSON.parse(JSON.stringify(quizPaper)));
+    quizPaperCopy = fixAnswerSheet(quizPaperCopy);
+    return gradePaper(quizPaperCopy, quizToTake.questions);
+  };
+
+  function gradePaper (quizPaper, answerSheet){
+    console.log(quizPaper);
+    for (var i = 0; i < answerSheet.length; i++){
+      var x = -1;
+      var y = -1;
+      for (var j = 0; j < quizPaper.answers[i].options.length; j++){
+        if (quizPaper.answers[i].options[j].isCorrect === true){
+          x = j;
+        }
+      }
+      for (var j = 0; j < answerSheet[i].options.length; j++){
+        if (answerSheet[i].options[j].isCorrect === true){
+          y = j;
+        }
+      }
+
+      console.log(x, y);
+      if (x === y){
+        quizPaper.answers[i].success = true;
+        quizPaper.score +=1;
+      } else {
+        quizPaper.answers[i].success = false;
+      }
+    }
+    return quizPaper
+  }
+
+  function fixAnswerSheet(answerSheet){
+    for(var i = 0; i<answerSheet.length; i++){
+      for(var j = 0; j< answerSheet[i].options.length; j++){
+        if (answerSheet[i].options[j].isCorrect != false){
+          answerSheet[i].options[j].isCorrect = true;
+        }
+      }
+    }
+    return answerSheet
+  }
   return quizFactory;
 }]);

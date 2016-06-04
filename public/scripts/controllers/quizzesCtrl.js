@@ -1,6 +1,6 @@
 app.controller('quizzesCtrl', [ '$scope','quizFactory','$location', function ($scope, quizFactory, $location){
   $scope.quizzes = [];
-  quizFactory.getAllQuizes().then(function(docs){
+  quizFactory.getAllQuizzes().then(function(docs){
     $scope.quizzes = docs;
   });
 
