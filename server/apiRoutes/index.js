@@ -1,1 +1,1 @@
-module.exports = [ require('./mainRoute')];
+module.exports = [ require('./quiz.js')];

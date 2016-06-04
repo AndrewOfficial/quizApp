@@ -69,6 +69,31 @@ addLib('moment/moment.js');
 
 app.use("/lib/bootstrap/", express.static(path.join(topDir, 'node_modules','bootstrap','dist')));
 
+// Bring Mongoose into the app
+var mongoose = require( 'mongoose' );
+
+// Build the connection string
+var dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/quizApp';
+
+// Create the database connection
+mongoose.connect(dbURI);
+
+// CONNECTION EVENTS
+// When successfully connected
+mongoose.connection.on('connected', function () {
+  console.log('Mongoose default connection open to ' + dbURI);
+});
+
+// If the connection throws an error
+mongoose.connection.on('error',function (err) {
+  console.log('Mongoose default connection error: ' + err);
+});
+
+// When the connection is disconnected
+mongoose.connection.on('disconnected', function () {
+  console.log('Mongoose default connection disconnected');
+});
+
 // attach error handler for http server
 server.on('error', function(error) {
 

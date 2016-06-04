@@ -2,9 +2,6 @@ app.controller('makeQuizCtrl', function ($scope, quizFactory){
 
   $scope.quiz = quizFactory.makeQuizObject.get();
   $scope.questionQuantity = $scope.quiz.questions.length;
-  console.log($scope.quiz);
-  $scope.saveQuiz = function(){
-  };
 
   $scope.changeQuestionQuantity = function (){
     if ($scope.questionQuantity > $scope.quiz.questions.length){
@@ -24,6 +21,10 @@ app.controller('makeQuizCtrl', function ($scope, quizFactory){
 
   $scope.removeAnswer = function (index){
     quizFactory.removeAnswer(index);
-  }
+  };
+
+  $scope.saveQuiz = function (){
+    quizFactory.saveQuiz();
+  };
 
 });
