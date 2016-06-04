@@ -1,0 +1,13 @@
+<h1>{{quiz.title}}</h1>
+<h2> Your Score: {{gradedPaper.score}}</h2>
+<div class="questions" ng-repeat="question in quiz.questions">
+  <h3>{{question.inQuery}}</h3>
+  <p style="background:green; display:inline" ng-show="gradedPaper.answers[$index].success">NICE!</p>
+  <p style="background:red; display:inline" ng-hide="gradedPaper.answers[$index].success">B-BAKA!</p>
+  <fieldset ng-repeat="option in question.options" disabled>
+    <input type="radio" name="{{$parent.$index}}" ng-checked="gradedPaper.answers[$parent.$index].options[$index].isCorrect">
+    <p style="display:inline">{{option.answer}}</p>
+  </fieldset>
+</div>
+<button ng-click="toMakeQuiz()">Make Your Own Quiz?</button>
+<button ng-click="toQuizzes()">Take Another Quiz?</button>

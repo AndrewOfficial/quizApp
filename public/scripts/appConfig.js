@@ -21,5 +21,8 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider',
     }).when('/take-quiz', {
       templateUrl: '/views/take-quiz.html',
       controller: 'takeQuizCtrl'
+    }).when('/overlook-quiz', {
+      templateUrl: '/views/overlook-quiz.html',
+      controller: 'overlookQuizCtrl'
     })
 }]);

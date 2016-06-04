@@ -1,6 +1,7 @@
 app.factory('quizFactory',['$http',function($http){
   var quizFactory = {};
-  var quizToTake;
+  var myQuiz;
+  var gradedPaper;
   var allQuizzes = [];
   var quizTemplate = {
     title:'',
@@ -65,15 +66,15 @@ app.factory('quizFactory',['$http',function($http){
   };
 
   quizFactory.selectQuiz = function(i){
-    quizToTake = allQuizzes[i];
+    myQuiz = allQuizzes[i];
   };
 
-  quizFactory.takeQuiz = function(){
-    return quizToTake;
+  quizFactory.getMyQuiz = function(){
+    return myQuiz;
   };
 
   quizFactory.newQuizPaper = function(){
-    var answers = JSON.parse(JSON.stringify(quizToTake.questions));
+    var answers = JSON.parse(JSON.stringify(myQuiz.questions));
     for (var i = 0 ; i < answers.length; i++){
       for (var j = 0; j < answers[i].options.length; j++){
         answers[i].options[j].isCorrect = false;
@@ -85,8 +86,12 @@ app.factory('quizFactory',['$http',function($http){
 
   quizFactory.submitQuiz = function (quizPaper){
     var quizPaperCopy = fixAnswerSheet(JSON.parse(JSON.stringify(quizPaper)));
-    quizPaperCopy = fixAnswerSheet(quizPaperCopy);
-    return gradePaper(quizPaperCopy, quizToTake.questions);
+    quizPaperCopy.answers = fixAnswerSheet(quizPaperCopy.answers);
+    myQuiz.submissions.push(gradePaper(quizPaperCopy, myQuiz.questions))
+  };
+
+  quizFactory.getGradedPaper = function(){
+    return gradedPaper;
   };
 
   function gradePaper (quizPaper, answerSheet){
@@ -113,13 +118,14 @@ app.factory('quizFactory',['$http',function($http){
         quizPaper.answers[i].success = false;
       }
     }
+    gradedPaper = quizPaper;
     return quizPaper
   }
 
   function fixAnswerSheet(answerSheet){
     for(var i = 0; i<answerSheet.length; i++){
       for(var j = 0; j< answerSheet[i].options.length; j++){
-        if (answerSheet[i].options[j].isCorrect != false){
+        if (answerSheet[i].options[j].isCorrect !== false){
           answerSheet[i].options[j].isCorrect = true;
         }
       }
