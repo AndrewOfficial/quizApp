@@ -1,1 +1,1 @@
-module.exports = [ require('./quiz.js')];
+module.exports = [ require('./quiz.js'), require('./users.js')];

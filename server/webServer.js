@@ -12,6 +12,7 @@ var path = require('path');
 var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
+var expressValidator = require('express-validator');
 
 // Local dependencies
 var indexRouter = require('./routes/index');
@@ -67,6 +68,7 @@ addLib('angular/angular.min.js');
 addLib('angular-route/angular-route.min.js');
 addLib('moment/moment.js');
 
+app.use(expressValidator());
 app.use("/lib/bootstrap/", express.static(path.join(topDir, 'node_modules','bootstrap','dist')));
 
 // Bring Mongoose into the app
