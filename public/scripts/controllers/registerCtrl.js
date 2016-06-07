@@ -1,6 +1,6 @@
-app.controller('registerCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+app.controller('registerCtrl', ['$scope', '$https', '$location', function ($scope, $https, $location) {
   $scope.submit = function () {
-    $http.post('/api/users/register', $scope.form)
+    $https.post('/api/users/register', $scope.form)
       .then(function (response) {
         console.log(response);
         $location.path('/login')

@@ -4,6 +4,7 @@ app.factory('quizFactory',['$http',function($http){
   var gradedPaper;
   var allQuizzes = [];
   var quizTemplate = {
+    creator:'',
     title:'',
     questions: [],
     questionsRemoved: [],

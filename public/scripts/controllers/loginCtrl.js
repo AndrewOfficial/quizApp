@@ -1,7 +1,7 @@
-app.controller('loginCtrl', ['$scope', '$http', 'authService', '$location',
-  function ($scope, $http, authService, $location) {
+app.controller('loginCtrl', ['$scope', '$https', 'authService', '$location',
+  function ($scope, $https, authService, $location) {
     $scope.submit = function () {
-      $http.post('/api/users/login', $scope.form)
+      $https.post('/api/users/login', $scope.form)
         .then(function (response) {
 
           // save json web token in session storage

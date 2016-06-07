@@ -2,5 +2,7 @@ app.controller('overlookQuizCtrl', [ '$scope','quizFactory','$location', functio
   $scope.quiz = quizFactory.getMyQuiz();
   $scope.gradedPaper = $scope.quiz.submissions[$scope.quiz.submissions.length - 1];
   console.log($scope.gradedPaper);
-
+  $scope.nav = function(S){
+    $location.path(S);
+  };
 }]);

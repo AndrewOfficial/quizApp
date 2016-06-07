@@ -4,8 +4,20 @@ var async = require('async');
 var router = require('express').Router();
 var Users = require('../../models/user');
 
-router.get('/users', function (req, res, next) {
-
+router.get('/users/:username', function (req, res, next) {
+  console.log("YE");
+  Users.findOne({username: req.params.username}, function (err, user) {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      console.log(user);
+      var userObj = {
+        fName: user.firstName,
+        lName: user.lastName
+      };
+      res.send(userObj);
+    }
+  });
 });
 
 router.post('/users/register', function (req, res, next) {

@@ -13,7 +13,7 @@ var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
-
+var jwt = require('jsonwebtoken');
 // Local dependencies
 var indexRouter = require('./routes/index');
 var apiRoutes = require('./apiRoutes/index');
@@ -55,6 +55,21 @@ app.use('/',indexRouter);
 apiRoutes.forEach(function(router) {
   app.use('/api', router);
 });
+
+//function authMiddleware(req, res, next) {
+//  console.log("LSDKJFLKSD");
+//  var access_token = req.get('Authorization');
+//  if (access_token) {
+//    var decoded = jwt.verify(access_token, 'wrong-secret');
+//    console.log(decoded);
+//  } else {
+//    res.sendStatus(401);
+//  }
+//}
+//
+//apiRoutes.forEach(function(router) {
+//  app.use('/api', authMiddleware, router);
+//});
 
 function addLib(relativePath) {
   var fileName = path.basename(relativePath);

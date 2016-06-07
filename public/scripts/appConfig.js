@@ -9,7 +9,7 @@ var app = angular.module('QuizApp', ['ngRoute']);
 // when just #/ ... goes to /pages/login.html, then use loginCtrl
 app.config(['$routeProvider', '$locationProvider', '$httpProvider',
   function ($routeProvider, $locationProvider, $httpProvider) {
-    $routeProvider.when('/main', {
+    $routeProvider.when('/', {
       templateUrl: '/views/main.html',
       controller: 'homeCtrl'
     }).when('/quizzes', {
@@ -24,11 +24,15 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider',
     }).when('/overlook-quiz', {
       templateUrl: '/views/overlook-quiz.html',
       controller: 'overlookQuizCtrl'
-    }).when('/', {
-      templateUrl: '/views/login.html',
-      controller: 'loginCtrl'
-    }).when('/register', {
-      templateUrl: '/views/register.html',
-      controller: 'registerCtrl'
     })
+    //  .when('/', {
+    //  templateUrl: '/views/login.html',
+    //  controller: 'loginCtrl'
+    //}).when('/register', {
+    //  templateUrl: '/views/register.html',
+    //  controller: 'registerCtrl'
+    //}).when('/bridge/', {
+    //  templateUrl: '/views/bridge.html',
+    //  controller: 'bridgeCtrl'
+    //})
 }]);

@@ -1,22 +1,24 @@
 <form id="start">
   <h2>Create Your Quiz!</h2>
   <fieldset>
+    <label for="creator"> Title </label>
+    <input type="text" id="creator" ng-model="quiz.creator" placeholder="What is your Username?" required>
     <label for="title"> Title </label>
-    <input type="text" id="title" ng-model="quiz.title" placeholder="What do you want to name your quiz?">
+    <input type="text" id="title" ng-model="quiz.title" placeholder="Choose a quiz name" required>
   </fieldset>
   <div class="questionQuantity">
     <h3>Change Question Quantity</h3>
-    <input type="number" ng-model="questionQuantity" min="1" max="8">
-    <button ng-click="changeQuestionQuantity()">Change Question Quantity</button>
+    <input type="number" ng-model="questionQuantity" min="1" max="10">
+    <button type="button" ng-click="changeQuestionQuantity()">Change Question Quantity</button>
   </div>
   <fieldset ng-repeat="question in quiz.questions track by $index">
-    <input type="text" ng-model="question.inQuery" placeholder="Enter Your Question">
+    <input type="text" ng-model="question.inQuery" placeholder="Enter Your Question" required>
     <button ng-click="addAnswer($index)">Add More Answers</button>
     <button ng-click="removeAnswer($index)">Remove Answers</button>
     <div ng-repeat="option in quiz.questions[$index].options">
-      <input type="radio" ng-model="option.isCorrect" name="{{$parent.$index}}"> Correct Answer
-      <input type="text" ng-model="option.answer" placeholder="possible answer">
+      <input type="radio" ng-checked="option.isCorrect" name="{{$parent.$index}}" required>
+      <input type="text" ng-model="option.answer" placeholder="possible answer" required>
     </div>
   </fieldset>
-  <button ng-click="saveQuiz()">Save Quiz!</button>
+  <button type="submit" ng-click="saveQuiz()">Save Quiz!</button>
 </form>

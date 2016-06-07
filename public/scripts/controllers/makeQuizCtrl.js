@@ -1,4 +1,4 @@
-app.controller('makeQuizCtrl', function ($scope, quizFactory){
+app.controller('makeQuizCtrl', function ($scope, quizFactory, $location){
 
   $scope.quiz = quizFactory.makeQuizObject.get();
   $scope.questionQuantity = $scope.quiz.questions.length;
@@ -25,6 +25,7 @@ app.controller('makeQuizCtrl', function ($scope, quizFactory){
 
   $scope.saveQuiz = function (){
     quizFactory.saveQuiz();
+    $location.path('/quizzes');
   };
 
 });
