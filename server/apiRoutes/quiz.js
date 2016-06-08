@@ -4,6 +4,12 @@ var async = require('async');
 var router = require('express').Router();
 var Quiz = require('../../models/quiz');
 
+router.get('/quiz/getQuiz/:id', function (req, res, next) {
+  Quiz.findOne({_id:req.params.id}).then(function(doc){
+    res.status(200).send(doc);
+  })
+});
+
 router.get('/quiz', function (req, res, next) {
   Quiz.find({}).then(function(docs){
     res.status(200).send(docs);

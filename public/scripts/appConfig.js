@@ -18,7 +18,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider',
     }).when('/make-quiz', {
       templateUrl: '/views/make-quiz.html',
       controller: 'makeQuizCtrl'
-    }).when('/take-quiz', {
+    }).when('/take-quiz/:id', {
       templateUrl: '/views/take-quiz.html',
       controller: 'takeQuizCtrl'
     }).when('/overlook-quiz', {

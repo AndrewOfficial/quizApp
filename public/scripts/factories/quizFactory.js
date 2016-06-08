@@ -1,4 +1,4 @@
-app.factory('quizFactory',['$http',function($http){
+app.factory('quizFactory',['$http', '$routeParams', function($http,$routeParams){
   var quizFactory = {};
   var myQuiz;
   var gradedPaper;
@@ -66,12 +66,12 @@ app.factory('quizFactory',['$http',function($http){
     })
   };
 
-  quizFactory.selectQuiz = function(i){
-    myQuiz = allQuizzes[i];
-  };
-
   quizFactory.getMyQuiz = function(){
-    return myQuiz;
+    console.log($routeParams.id);
+    return $http.get('/api/quiz/getQuiz/' + $routeParams.id).then(function(response){
+      myQuiz = response.data;
+      return response.data;
+    })
   };
 
   quizFactory.newQuizPaper = function(){

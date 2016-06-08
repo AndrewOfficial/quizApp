@@ -1,17 +1,16 @@
-app.controller('homeCtrl', ['$scope', 'quizFactory', '$location', function ($scope, quizFactory, $location){
+app.controller('homeCtrl', ['$scope', 'quizFactory', '$location', function ($scope, quizFactory, $location, $window){
   $scope.showQuizModal = false;
   $scope.title = '';
   $scope.questions = 5;
-  $scope.toggleQuizModal = function () {
-    if ($scope.showQuizModal){
-      $scope.showQuizModal = false;
-    } else {
-      $scope.showQuizModal = true;
-    }
-  };
+
+  $scope.height = window.innerHeight;
 
   $scope.makeQuiz = function(){
-    quizFactory.makeQuizObject.set($scope.title, $scope.questions);
+    quizFactory.makeQuizObject.set("", 5);
     $location.path('/make-quiz')
+  };
+
+  $scope.takeQuiz = function(){
+    $location.path('/quizzes')
   }
 }]);
