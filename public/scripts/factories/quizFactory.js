@@ -12,9 +12,9 @@ app.factory('quizFactory',['$http', '$routeParams', function($http,$routeParams)
   };
 
   quizFactory.makeQuizObject = {
-    set: function (title, questions){
-      quizTemplate.title = title;
-      for (var i = 0; i < questions; i++){
+    set: function (){
+      quizTemplate.title = '';
+      for (var i = 0; i < 2; i++){
         quizFactory.addQuestion(i);
       }
     },

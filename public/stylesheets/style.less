@@ -6,6 +6,11 @@ a {
   color: #00B7FF;
 }
 
+input[type='text']{
+  margin: 5px;
+  padding:8px;
+}
+
 .background {
   background: url('../images/bg.jpeg') no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -74,7 +79,7 @@ header {
     color: #ebf0ff;
     text-align: center;
     font-weight: bold;
-    font-size: 4em;
+    font-size: 3em;
     text-shadow: 1px 1px 1px #e2e6ff;
   }
 }
@@ -125,8 +130,31 @@ header {
     border-radius: 10px;
     box-shadow: 0 0 3px black;
   }
+  input.query[type='text']{
+      width: 50%;
+  }
+
+
+  button.btn.btn-default{
+    margin: 10px;
+    padding: 10px 50px;
+    transition: .3s ease-in-out;
+  }
+  button.btn.btn-default:focus {
+    background-color:inherit;
+    outline:0;
+  }
+  button.btn.btn-default:hover {
+    background-color: #77aff5;
+    text-shadow: 0 0 100px #FFFFFF;
+  }
+
   .answer{
     margin: 10px;
+    clear: both;
+    input[type='text']{
+      width: 80%;
+    }
   }
   .submit{
     text-align: center;
@@ -141,5 +169,27 @@ header {
       font-size: 1.7em;
       font-weight: bold;
     }
+  }
+  .next{
+    text-align: center;
+    button{
+      margin-top:10px;
+      width: 350px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      transition: .3s ease-in-out;
+    }
+    button:hover {
+      background-color: #77aff5;
+      text-shadow: 0 0 100px #FFFFFF;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+  }
+  .numberPick{
+    padding:6px;
+  }
+  .quantityBtns{
+    float:right;
   }
 }

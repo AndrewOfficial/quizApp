@@ -6,7 +6,7 @@
     <h3>{{question.inQuery}}</h3>
     <fieldset class="answer" ng-repeat="option in question.options">
       <label for="choice"></label>
-      <input type="radio" id="choice" ng-checked="quizPaper.answers[$parent.$index].options[$index].isCorrect" name="{{$parent.$index}}" required>
+      <input type="radio" id="choice" ng-model="quizPaper.answers[$parent.$index].options[$index].isCorrect" name="{{$parent.$index}}" required>
       <p style="display:inline">{{option.answer}}</p>
     </fieldset>
   </div>

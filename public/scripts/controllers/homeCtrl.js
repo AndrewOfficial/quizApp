@@ -6,7 +6,6 @@ app.controller('homeCtrl', ['$scope', 'quizFactory', '$location', function ($sco
   $scope.height = window.innerHeight;
 
   $scope.makeQuiz = function(){
-    quizFactory.makeQuizObject.set("", 5);
     $location.path('/make-quiz')
   };
 
