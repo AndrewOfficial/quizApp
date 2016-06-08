@@ -1,13 +1,16 @@
-<div class="quiz">
-  <div class="title">
-    <h1>{{quiz.title}}</h1>
-  </div>
-  <div class="questions" ng-repeat="question in quiz.questions">
+<header class="title">
+  <h1>{{quiz.title}}</h1>
+</header>
+<form class="quiz container" ng-submit="submitQuiz()">
+  <div class="question" ng-repeat="question in quiz.questions">
     <h3>{{question.inQuery}}</h3>
-    <fieldset ng-repeat="option in question.options">
-      <input type="radio" ng-model="quizPaper.answers[$parent.$index].options[$index].isCorrect" name="{{$parent.$index}}">
+    <fieldset class="answer" ng-repeat="option in question.options">
+      <label for="choice"></label>
+      <input type="radio" id="choice" ng-checked="quizPaper.answers[$parent.$index].options[$index].isCorrect" name="{{$parent.$index}}" required>
       <p style="display:inline">{{option.answer}}</p>
     </fieldset>
   </div>
-  <button ng-click="submitQuiz()">Submit</button>
-</div>
+  <div class="submit">
+    <button class="btn btn-default" type="submit">Submit</button>
+  </div>
+</form>

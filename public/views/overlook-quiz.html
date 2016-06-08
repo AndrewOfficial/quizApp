@@ -1,13 +1,19 @@
-<h1>{{quiz.title}}</h1>
-<h2> Your Score: {{gradedPaper.score}}</h2>
-<div class="questions" ng-repeat="question in quiz.questions">
-  <h3>{{question.inQuery}}</h3>
-  <p style="background:green; display:inline" ng-show="gradedPaper.answers[$index].success">NICE!</p>
-  <p style="background:red; display:inline" ng-hide="gradedPaper.answers[$index].success">B-BAKA!</p>
-  <fieldset ng-repeat="option in question.options" disabled>
-    <input type="radio" name="{{$parent.$index}}" ng-checked="gradedPaper.answers[$parent.$index].options[$index].isCorrect">
-    <p style="display:inline">{{option.answer}}</p>
-  </fieldset>
+<header>
+  <h1>{{quiz.title}}</h1>
+</header>
+<div class="container quiz">
+  <h2> Your Score: {{gradedPaper.score}}</h2>
+  <div class="question" ng-repeat="question in quiz.questions">
+    <h3>{{question.inQuery}}</h3>
+    <p style="background:green; display:inline" ng-show="gradedPaper.answers[$index].success">NICE!</p>
+    <p style="background:red; display:inline" ng-hide="gradedPaper.answers[$index].success">B-BAKA!</p>
+    <fieldset ng-repeat="option in question.options" disabled>
+      <input type="radio" name="{{$parent.$index}}" ng-checked="gradedPaper.answers[$parent.$index].options[$index].isCorrect">
+      <p style="display:inline">{{option.answer}}</p>
+    </fieldset>
+  </div>
+  <div class="next">
+    <button class="btn btn-default" ng-click="nav('/make-quiz')">Make Your Own Quiz?</button>
+    <button class="btn btn-default" ng-click="nav('/quizzes')">Take Another Quiz?</button>
+  </div>
 </div>
-<button ng-click="nav('/make-quiz')">Make Your Own Quiz?</button>
-<button ng-click="nav('/quizzes')">Take Another Quiz?</button>

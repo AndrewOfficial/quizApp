@@ -67,8 +67,7 @@ app.factory('quizFactory',['$http', '$routeParams', function($http,$routeParams)
   };
 
   quizFactory.getMyQuiz = function(){
-    console.log($routeParams.id);
-    return $http.get('/api/quiz/getQuiz/' + $routeParams.id).then(function(response){
+    return $http.get('/api/quiz/getQuiz/' + $routeParams.quizID).then(function(response){
       myQuiz = response.data;
       return response.data;
     })
@@ -88,11 +87,10 @@ app.factory('quizFactory',['$http', '$routeParams', function($http,$routeParams)
   quizFactory.submitQuiz = function (quizPaper){
     var quizPaperCopy = fixAnswerSheet(JSON.parse(JSON.stringify(quizPaper)));
     quizPaperCopy.answers = fixAnswerSheet(quizPaperCopy.answers);
-    myQuiz.submissions.push(gradePaper(quizPaperCopy, myQuiz.questions))
-  };
-
-  quizFactory.getGradedPaper = function(){
-    return gradedPaper;
+    myQuiz.submissions.push(gradePaper(quizPaperCopy, myQuiz.questions));
+    return $http.put('/api/quiz',myQuiz).then(function(response){
+      return response.data;
+    })
   };
 
   function gradePaper (quizPaper, answerSheet){

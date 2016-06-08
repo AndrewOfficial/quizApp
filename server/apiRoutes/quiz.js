@@ -27,8 +27,10 @@ router.post('/quiz', function (req, res, next) {
   })
 });
 
-router.put('/', function (req, res, next) {
-
+router.put('/quiz', function (req, res, next) {
+  Quiz.update({_id: req.body._id},{submissions: req.body.submissions},function(doc){
+    res.status(200).send(doc);
+  });
 });
 
 router.delete('/', function (req, res, next) {

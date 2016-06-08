@@ -1,17 +1,17 @@
-<div class="container">
-  <div class="quizzes">
-    <h1>Choose A Quiz</h1>
-    <table>
-      <thead>
-        <th>Quiz Title</th>
-        <th>Creator</th>
-      </thead>
-      <tbody>
-        <tr class="quiz" ng-repeat="quiz in quizzes" ng-click="takeQuiz($index)">
-          <td class="title">{{quiz.title}}</td>
-          <td class="creator">{{quiz.creator}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<header>
+  <h1>Choose A Quiz</h1>
+</header>
+<div class="quizzes container">
+  <table class="quizTable table">
+    <thead>
+      <th>Quiz Title</th>
+      <th>Creator</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="quiz in quizzes" ng-click="takeQuiz($index)">
+        <td class="title">{{quiz.title}}</td>
+        <td class="creator">{{quiz.creator}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

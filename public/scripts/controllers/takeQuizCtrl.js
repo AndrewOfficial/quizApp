@@ -5,7 +5,9 @@ app.controller('takeQuizCtrl', [ '$scope','quizFactory','$location', function ($
   });
 
   $scope.submitQuiz = function(){
-    quizFactory.submitQuiz($scope.quizPaper);
-    $location.path('/overlook-quiz');
+    quizFactory.submitQuiz($scope.quizPaper).then(function(data){
+      console.log(data);
+      $location.path('/overlook-quiz/'+$scope.quiz._id + "/" + $scope.quizPaper._id);
+    });
   }
 }]);
