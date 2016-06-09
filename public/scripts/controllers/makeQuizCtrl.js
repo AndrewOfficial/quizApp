@@ -1,6 +1,6 @@
 app.controller('makeQuizCtrl', function ($scope, quizFactory, $location){
 
-  $scope.quiz = quizFactory.makeQuizObject.set();
+  quizFactory.makeQuizObject.set();
   $scope.quiz = quizFactory.makeQuizObject.get();
   $scope.questionQuantity = $scope.quiz.questions.length;
 

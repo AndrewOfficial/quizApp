@@ -2,6 +2,8 @@
   <h1>{{quiz.title}}</h1>
 </header>
 <form class="quiz container" ng-submit="submitQuiz()">
+  <label for="name">Quizzer: </label>
+  <input type="text" id="name" placeholder="Your Name" ng-model="quizPaper.quizzer">
   <div class="question" ng-repeat="question in quiz.questions">
     <h3>{{question.inQuery}}</h3>
     <fieldset class="answer" ng-repeat="option in question.options">

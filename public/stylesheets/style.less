@@ -11,6 +11,14 @@ input[type='text']{
   padding:8px;
 }
 
+@media (max-width:768px) {
+ .container{
+   width: 100%;
+   margin:0;
+   padding: 0;
+ }
+}
+
 .background {
   background: url('../images/bg.jpeg') no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -62,11 +70,18 @@ input[type='text']{
     border: solid 3px #003263;
   }
 
-  .left{
-    //background-color:#99b433;
-  }
-  .right{
-    //background-color:#2d89ef;
+  @media (max-width: 770px) {
+    background:#77aff5;
+    button {
+      margin: 10px 10%;
+    }
+    button:hover{
+      background-color: rgba(255,255,255, .4);
+      width: 80%;
+      margin: 10px 10%;
+      color: #003263;
+      font-size: 2.4em;
+    }
   }
 }
 
@@ -90,13 +105,6 @@ header {
     width: 80%;
     margin: 20px 10%;
     box-shadow: 0 0 5px black;
-
-    thead {
-      background-color:;
-      th {
-
-      }
-    }
     tr{
 
       background-color: #FFFFFF;
@@ -117,6 +125,22 @@ header {
       text-shadow: 0 0 100px #FFFFFF;
       font-size: 1.7em;
       font-weight: bold;
+    }
+    @media(max-width:770px){
+      width:100%;
+      margin:0;
+      td{
+        padding: 20px;
+      }
+      tr{
+        font-size: 1.5em;
+      }
+      tr:hover {
+        cursor:pointer;
+        background-color: #FFFFFF;
+        font-size: 1.5em;
+        font-weight: 500;
+      }
     }
   }
 }

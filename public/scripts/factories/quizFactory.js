@@ -3,16 +3,20 @@ app.factory('quizFactory',['$http', '$routeParams', function($http,$routeParams)
   var myQuiz;
   var gradedPaper;
   var allQuizzes = [];
-  var quizTemplate = {
+  var quizTemplate;
+  function newQuiz (){
+    return {
     creator:'',
     title:'',
     questions: [],
     questionsRemoved: [],
     submissions: []
+    }
   };
 
   quizFactory.makeQuizObject = {
     set: function (){
+      quizTemplate = new newQuiz();
       quizTemplate.title = '';
       for (var i = 0; i < 2; i++){
         quizFactory.addQuestion(i);
